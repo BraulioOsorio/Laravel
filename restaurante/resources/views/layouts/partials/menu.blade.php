@@ -1,12 +1,15 @@
-
-<nav class="navbar bg-body-tertiary mb-5">
+<nav class="navbar navbar-default">
     <div class="container">
-        <img src="{{asset('assets/img/tuerca.png')}}" alt="image" width="50" height="30">
-        <ul class="nav">
-            <li class="nav-item"><a class="nav-link" href="{{route('index')}}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{route('about')}}">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{route('services')}}">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
-        </ul>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Restaurante</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav clear main-nav navbar-right ">
+                <li><a class="navactive color_animation" href="{{--route()--}}">Inicio</a></li>
+                <li><a class="navactive color_animation" href="{{route('categorias')}}">Categoria</a></li>
+                <li><a class="navactive color_animation" href="{{route('plato')}}">Plato</a></li>
+                <li><a class="navactive color_animation" href="{{route('pedido')}}">Pedido</a></li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>

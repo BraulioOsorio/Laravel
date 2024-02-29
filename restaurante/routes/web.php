@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'index')->name('index');
+Route::view('/categorias', 'categorias')->name('categorias');
+Route::view('/plato','plato')->name('plato');
+Route::view('/pedido','pedido')->name('pedido');
