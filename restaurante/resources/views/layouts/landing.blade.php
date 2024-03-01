@@ -15,7 +15,7 @@
         
     </head>
 
-    <body>
+    <body style="background-color:black ">
         @include('layouts.partials.menu')
         @yield('conten')
 

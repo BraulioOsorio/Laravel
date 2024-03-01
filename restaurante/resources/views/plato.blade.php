@@ -6,7 +6,7 @@
 
   @section('conten')
 
-    <div class="background_content">
+    <div class="background_content" style="background-color:black">
         <h1>Platos</h1>
     </div>
     <div class="text-content container"> 
