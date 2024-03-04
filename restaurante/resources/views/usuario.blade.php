@@ -9,9 +9,9 @@
     </div>
     <div class="text-content container"> 
         <div class="contact-form">
-            <form action="{{ isset($categorias) ? route('update',$categorias->id) : route('store') }}" method="post">
+            <form action="{{ isset($usuarios) ? route('updateU',$usuarios->id) : route('storeU') }}" method="post">
                 @csrf
-                @if(isset($categorias))
+                @if(isset($usuarios))
                     @method('put')
                 @endif
                 <div class="container">
@@ -19,10 +19,10 @@
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             @component('_components.inpout')
                                 @slot('type','text')
-                                @slot('name','nombre')
-                                @slot('place','Nombre-categoria')
-                                @if(isset($categorias))
-                                    @slot('valor', $categorias->nombre)
+                                @slot('name','Fullname')
+                                @slot('place','Nombre-completo')
+                                @if(isset($usuarios))
+                                    @slot('valor', $usuarios->Fullname)
                                 @else
                                     @slot('valor', '')
                                 @endif
@@ -31,11 +31,23 @@
             
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             @component('_components.inpout')
-                                @slot('type','text')
-                                @slot('name','descripcion')
-                                @slot('place','Descripcion')
-                                @if(isset($categorias))
-                                    @slot('valor', $categorias->descripcion)
+                                @slot('type','mail')
+                                @slot('name','correo')
+                                @slot('place','Correo')
+                                @if(isset($usuarios))
+                                    @slot('valor', $usuarios->correo)
+                                @else
+                                    @slot('valor', '')
+                                @endif
+                            @endcomponent
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-6">
+                            @component('_components.inpout')
+                                @slot('type','password')
+                                @slot('name','pass')
+                                @slot('place','Contraseña')
+                                @if(isset($usuarios))
+                                    @slot('valor', $usuarios->pass)
                                 @else
                                     @slot('valor', '')
                                 @endif

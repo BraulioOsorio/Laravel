@@ -10,9 +10,10 @@ class CategoriasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function ListaCategorias()
     {
-        //
+        $categorias = Categoria::all();
+        return view('ListaCategorias',compact('categorias'));
     }
 
     public function create(){
@@ -25,7 +26,7 @@ class CategoriasController extends Controller
     public function store(Request $request)
     {
         Categoria::create($request->all());
-        return redirect()->route('index');
+        return redirect()->route('ListaCategorias');
     }
 
     /**
@@ -39,16 +40,22 @@ class CategoriasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Categoria $categorias)
     {
-        //
+        $categorias->update($request->all());
+        return redirect()->route('ListaCategorias');
+    }
+
+    public function edit(Categoria $categorias){
+        return view('categorias',compact('categorias'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Categoria $categorias)
     {
-        //
+        $categorias->delete();
+        return redirect()->route('ListaCategorias');
     }
 }
