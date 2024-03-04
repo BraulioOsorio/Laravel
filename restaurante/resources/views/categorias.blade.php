@@ -9,7 +9,8 @@
     </div>
     <div class="text-content container"> 
         <div class="contact-form">
-            <form id="contact-us" method="post">
+            <form action="{{route('store')}}" method="post">
+                @csrf
                 <div class="container">
                     <div class="row">
 
@@ -30,7 +31,7 @@
                             @endcomponent
                         </div>
                         <div>
-                            <button type="submit" id="submit" name="submit" class="text-center form-btn form-btn">Guardar</button> 
+                            <button type="submit" class="text-center form-btn form-btn">Guardar</button> 
                         </div>
                     </div>
                 </div>

@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Note extends Model
 {
     protected $fillable = [
-        'nombre',
+        'title',
         'descripcion',
-        'status',
     ];
 }

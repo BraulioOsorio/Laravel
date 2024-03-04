@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'index')->name('index');
-Route::view('/categorias', 'categorias')->name('categorias');
+Route::get('/create',[CategoriasController::class,'create'])->name('create');
+Route::post('/store',[CategoriasController::class,'store'])->name('store');
 Route::view('/plato','plato')->name('plato');
 Route::view('/pedido','pedido')->name('pedido');
