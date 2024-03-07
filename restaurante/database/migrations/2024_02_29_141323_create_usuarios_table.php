@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('Fullname');
             $table->string('correo');
             $table->string('pass');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

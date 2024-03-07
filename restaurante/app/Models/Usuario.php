@@ -11,5 +11,6 @@ class Usuario extends Model
         'Fullname',
         'correo',
         'pass',
+        'status',
     ];
 }

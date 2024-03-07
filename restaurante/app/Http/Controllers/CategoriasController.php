@@ -13,6 +13,7 @@ class CategoriasController extends Controller
     public function ListaCategorias()
     {
         $categorias = Categoria::all();
+        //$categorias = Categoria::where('status','1')->get();
         return view('ListaCategorias',compact('categorias'));
     }
 
@@ -27,14 +28,6 @@ class CategoriasController extends Controller
     {
         Categoria::create($request->all());
         return redirect()->route('ListaCategorias');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -53,9 +46,16 @@ class CategoriasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categorias)
+    public function destroy(Request $request, $categorias)
     {
-        $categorias->delete();
+        $categoriaFind = Categoria::find($categorias);
+
+        if($categoriaFind){
+            $categoriaFind->status= ($categoriaFind->status==1)? 0 : 1;
+            $categoriaFind->save();
+
+        }
+        
         return redirect()->route('ListaCategorias');
     }
 }

@@ -56,9 +56,17 @@ class Usuariocontroller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroyU(Usuario $usuarios)
+
+    public function destroyU(Request $request, $usuarios)
     {
-        $usuarios->delete();
+        $userFind = Usuario::find($usuarios);
+
+        if($userFind){
+            $userFind->status= ($userFind->status==1)? 0 : 1;
+            $userFind->save();
+
+        }
+        
         return redirect()->route('ListaUsuarios');
     }
 }

@@ -5,13 +5,13 @@
 @section('conten')
 
     <div class="background_content" style="background-color:black">
-        <h1>Categorias</h1>
+        <h1>Cupones</h1>
     </div>
     <div class="text-content container"> 
         <div class="contact-form ">
-            <form action="{{ isset($categorias) ? route('update',$categorias->id) : route('store') }}" method="post">
+            <form action="{{ isset($cupon) ? route('updateC',$cupon->id) : route('storeC') }}" method="post">
                 @csrf
-                @if(isset($categorias))
+                @if(isset($cupon))
                     @method('put')
                 @endif
                 <div class="container">
@@ -19,10 +19,10 @@
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             @component('_components.inpout')
                                 @slot('type','text')
-                                @slot('name','nombre')
-                                @slot('place','Nombre-categoria')
-                                @if(isset($categorias))
-                                    @slot('valor', $categorias->nombre)
+                                @slot('name','codigo_cupon')
+                                @slot('place','Codigo-Cupon')
+                                @if(isset($cupon))
+                                    @slot('valor', $cupon->codigo_cupon)
                                 @else
                                     @slot('valor', '')
                                 @endif
@@ -31,11 +31,11 @@
             
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             @component('_components.inpout')
-                                @slot('type','text')
-                                @slot('name','descripcion')
-                                @slot('place','Descripcion')
-                                @if(isset($categorias))
-                                    @slot('valor', $categorias->descripcion)
+                                @slot('type','number')
+                                @slot('name','porcentaje')
+                                @slot('place','Porcentaje-%')
+                                @if(isset($cupon))
+                                    @slot('valor', $cupon->porcentaje)
                                 @else
                                     @slot('valor', '')
                                 @endif

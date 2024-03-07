@@ -12,29 +12,34 @@
     </div>
     <div class="text-content container"> 
         <div class="contact-form">
-            <table class="table">
+            <table class="table ">
                 <thead>
-                  <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">correo</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
+                  <tr >
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">correo</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Modificar Estado</th>
                   </tr>
                 </thead>
-                <tbody>
+                    <tbody class="text-center">
                     @forelse ($usuarios as $user)
 
                         <tr>
                             <td>{{$user->Fullname}}</td>
                             <td>{{$user->correo}}</td>
                             <td>
-                                <button type="submit" class="text-center btn-success"><a href="{{route('editU',$user->id)}}">Editar</a></button> 
+                                <button type="submit" class="text-center btn btn-success"><a href="{{route('editU',$user->id)}}">Editar</a></button> 
                             </td>
                             <td>
                                 <form method="POST" action="{{route('destroyU',$user->id)}}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-center btn-danger">Eliminar</button> 
+                                    @if($user->status == 1)
+                                        <button type="submit" class="text-center btn btn-danger">Eliminar</button>  
+                                    @else
+                                        <button type="submit" class="text-center btn btn-success">Activar</button>  
+                                    @endif
+
                                 </form>
                             </td>
                         </tr>

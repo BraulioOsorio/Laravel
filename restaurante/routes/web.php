@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\Usuariocontroller;
+use App\Http\controllers\PlatoController;
+use App\Http\controllers\CuponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ Route::put('/update/{categorias}',[CategoriasController::class,'update'])->name(
 Route::get('/edit/{categorias}',[CategoriasController::class,'edit'])->name('edit');
 
 
-
+#Usuarios
 Route::get('/ListaUsuarios',[Usuariocontroller::class,'ListaUsuarios'])->name('ListaUsuarios');
 Route::get('/createU',[Usuariocontroller::class,'createU'])->name('createU');
 Route::post('/storeU',[Usuariocontroller::class,'storeU'])->name('storeU');
@@ -35,5 +37,23 @@ Route::put('/updateU/{usuarios}',[Usuariocontroller::class,'updateU'])->name('up
 Route::get('/editU/{usuarios}',[Usuariocontroller::class,'editU'])->name('editU');
 
 
-Route::view('/plato','plato')->name('plato');
+#Platos
+Route::get('/ListaPlatos',[PlatoController::class,'ListaPlatos'])->name('ListaPlatos');
+Route::get('/createP',[PlatoController::class,'createP'])->name('createP');
+Route::post('/storeP',[PlatoController::class,'storeP'])->name('storeP');
+Route::delete('/destroyP/{platos}',[PlatoController::class,'destroyP'])->name('destroyP');
+Route::put('/updateP/{platos}',[PlatoController::class,'updateP'])->name('updateP');
+Route::get('/editP/{platos}',[PlatoController::class,'editP'])->name('editP');
+
+
+
+#Cupones
+Route::get('/ListaCupones',[CuponController::class,'ListaCupones'])->name('ListaCupones');
+Route::get('/createC',[CuponController::class,'createC'])->name('createC');
+Route::post('/storeC',[CuponController::class,'storeC'])->name('storeC');
+Route::delete('/destroyC/{cupon}',[CuponController::class,'destroyC'])->name('destroyC');
+Route::put('/updateC/{cupon}',[CuponController::class,'updateC'])->name('updateC');
+Route::get('/editC/{cupon}',[CuponController::class,'editC'])->name('editC');
+
+
 Route::view('/pedido','pedido')->name('pedido');

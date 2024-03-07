@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{asset('assets/css/main.css')}}" media="screen" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
         
 

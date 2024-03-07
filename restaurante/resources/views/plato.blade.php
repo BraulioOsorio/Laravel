@@ -11,23 +11,34 @@
     </div>
     <div class="text-content container"> 
         <div class="contact-form">
-            <form id="contact-us" method="post">
+            <form action="{{ isset($platos) ? route('updateP',$platos->id) : route('storeP') }}" method="post">
                 <div class="container">
                     <div class="row">
+                        @csrf
+                        @if(isset($platos))
+                            @method('put')
+                        @endif
 
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             @component('_components.inpout')
                                 @slot('type','text')
                                 @slot('name','nombre')
                                 @slot('place','Nombre-Plato')
+                                @if(isset($platos))
+                                    @slot('valor', $platos->nombre)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                                 
                             @endcomponent
                             
-                            <select class="form mb-5" aria-label="Default select example">
-                                <option selected>Seleccione una Categoria</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form mb-5" aria-label="Default select example" name="categoria_id">
+                                @forelse($categorias as $cate)
+                                    <option value={{$cate->id}}>{{$cate->nombre}}</option>
+                                @empty
+                                    
+                                    <option value="0">No Hay categorias</option>
+                                @endforelse
                             </select>
                             
                         </div>
@@ -38,12 +49,22 @@
                               @slot('type','number')
                               @slot('name','costo')
                               @slot('place','Costo-Plato')
+                              @if(isset($platos))
+                                    @slot('valor', $platos->costo)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                                 
                             @endcomponent
                             @component('_components.inpout')
                                 @slot('type','number')
                                 @slot('name','precio')
                                 @slot('place','Precio-Plato')
+                                @if(isset($platos))
+                                    @slot('valor', $platos->precio)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                             @endcomponent
                             
                         </div>
