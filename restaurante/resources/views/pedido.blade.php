@@ -1,54 +1,89 @@
 @extends('layouts.landing')
 
-@section('title','Plato')
+@section('title','Pedidos')
 
 @section('conten')
 
     <div class="background_content" style="background-color:black">
-        <h1>Plato</h1>
+        <h1>Pedidos</h1>
     </div>
     <div class="text-content container"> 
         <div class="contact-form">
-            <form id="contact-us" method="post">
+            <form id="contact-us" method="post" action="{{isset($pedidos) ? route('updateD',$pedidos->id) : route('storeD')}}">
                 <div class="container">
                     <div class="row">
+                        @csrf
+                        @if(isset($pedidos))
+                            @method('put')
+                        @endif
 
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             @component('_components.inpout')
                                 @slot('type','text')
                                 @slot('name','nombre')
                                 @slot('place','Nombre-Completo')
+                                @if(isset($pedidos))
+                                    @slot('valor', $pedidos->nombre)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                             @endcomponent
                             @component('_components.inpout')
                                 @slot('type','number')
                                 @slot('name','telefono')
                                 @slot('place','Telefono')
+                                @if(isset($pedidos))
+                                    @slot('valor', $pedidos->telefono)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                             @endcomponent
                             @component('_components.inpout')
                                 @slot('type','text')
                                 @slot('name','direccion')
                                 @slot('place','Direccion')
+                                @if(isset($pedidos))
+                                    @slot('valor', $pedidos->direccion)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                             @endcomponent
-                            <input type="text" name="cupon" class="form" placeholder="Cupon" />
-                            <select class="form " aria-label="Default select example">
-                                <option selected>Seleccione un Plato</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                           
+                            @if(isset($pedidos))
+                                <input type="text" name="cupon_id" class="form" placeholder="Cupon" value="{{$pedidos->cupon_id}}"/>
+                            @else
+                                <input type="text" name="cupon_id" class="form" placeholder="Cupon" />
+                            @endif
+                            <select class="form " aria-label="Default select example" name="plato_id">
+                                @forelse($platos as $platos)
+                                    <option value={{$platos->id}}>{{$platos->nombre}}</option>
+                                @empty
+                                    
+                                    <option value="0">No Hay Platos</option>
+                                @endforelse
                             </select>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-xs-6">
-                            <textarea name="descripcion" class="form textarea"  placeholder="Descripción"></textarea>
+                            
+                            @if(isset($pedidos))
+                                <textarea name="descripcion" class="form textarea"  placeholder="Descripción" value="{{$pedidos->descripcion}}">{{$pedidos->descripcion}}</textarea>
+                            @else
+                                <textarea name="descripcion" class="form textarea"  placeholder="Descripción"></textarea>
+                            @endif
                             @component('_components.inpout')
                                 @slot('type','time')
                                 @slot('name','hora')
                                 @slot('place','Hora')
+                                @if(isset($pedidos))
+                                    @slot('valor', $pedidos->hora)
+                                @else
+                                    @slot('valor', '')
+                                @endif
                             @endcomponent
-                            <select class="form" aria-label="Default select example">
-                                <option selected>Seleccione el Tipo de pedido</option>
-                                <option value="1">ENSITIO</option>
-                                <option value="2">DOMICILIO</option>
+                            <select name="tipo_pedido" class="form" aria-label="Default select example">
+                                <option value="ENSITIO">ENSITIO</option>
+                                <option value="DOMICILIO">DOMICILIO</option>
                             </select>
                         </div>
                         <div>

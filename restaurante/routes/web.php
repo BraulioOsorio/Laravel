@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\Usuariocontroller;
 use App\Http\controllers\PlatoController;
-use App\Http\controllers\CuponController;
 
+use App\Http\controllers\CuponController;
+use App\Http\controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,5 +56,11 @@ Route::delete('/destroyC/{cupon}',[CuponController::class,'destroyC'])->name('de
 Route::put('/updateC/{cupon}',[CuponController::class,'updateC'])->name('updateC');
 Route::get('/editC/{cupon}',[CuponController::class,'editC'])->name('editC');
 
+#Pedidos
+Route::get('/ListaPedidos',[PedidoController::class,'ListaPedidos'])->name('ListaPedidos');
+Route::get('/createD',[PedidoController::class,'createD'])->name('createD');
+Route::post('/storeD',[PedidoController::class,'storeD'])->name('storeD');
+Route::delete('/destroyD/{pedidos}',[PedidoController::class,'destroyD'])->name('destroyD');
+Route::put('/updateD/{pedidos}',[PedidoController::class,'updateD'])->name('updateD');
+Route::get('/editD/{pedidos}',[PedidoController::class,'editD'])->name('editD');
 
-Route::view('/pedido','pedido')->name('pedido');

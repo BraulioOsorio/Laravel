@@ -28,7 +28,7 @@ class PlatoController extends Controller
     }
 
     public function createP(){
-        $categorias = Categoria::all();
+        $categorias = Categoria::where('status','1')->get();
         return view('plato',compact('categorias'));
         
     }
@@ -44,7 +44,7 @@ class PlatoController extends Controller
 
 
     public function editP(Plato $platos){
-        $categorias = Categoria::all();
+        $categorias = Categoria::where('status','1')->get();
         return view('plato',compact('platos','categorias'));
     }
 
