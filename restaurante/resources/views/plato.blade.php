@@ -33,11 +33,20 @@
                             @endcomponent
                             
                             <select class="form mb-5" aria-label="Default select example" name="categoria_id">
+
                                 @forelse($categorias as $cate)
-                                    <option value={{$cate->id}}>{{$cate->nombre}}</option>
+                                    @if(isset($platos))
+                                        @if($platos->categoria_id == $cate->id)
+                                            <option selected value={{$cate->id}}>{{$cate->nombre}}</option>
+                                        @else
+                                            <option value={{$cate->id}}>{{$cate->nombre}}</option>
+                                        @endif
+                    
+                                    @else
+                                        <option value={{$cate->id}}>{{$cate->nombre}}</option>
+                                    @endif
                                 @empty
-                                    
-                                    <option value="0">No Hay categorias</option>
+                                    <option>No Hay categorias</option>
                                 @endforelse
                             </select>
                             

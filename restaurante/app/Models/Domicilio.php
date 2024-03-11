@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domicilio extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'nombre',
         'telefono',
