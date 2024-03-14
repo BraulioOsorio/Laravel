@@ -7,7 +7,7 @@
         <button type="submit" class="text-center form-btn form-btn"><a href="{{route('createD')}}">Crear</a></button> 
     </div>
 
-    <div class="background_content" style="background-color:black">
+    <div class="background_content">
         <h1>Lista Pedidos</h1>
     </div>
     <div class="text-content container"> 

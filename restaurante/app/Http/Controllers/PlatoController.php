@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Plato;
 use App\Models\Categoria;
+use App\Http\Requests\PlatoRequest;
 
 class PlatoController extends Controller
 {
@@ -21,10 +22,10 @@ class PlatoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function storeP(Request $request)
+    public function storeP(PlatoRequest $request)
     {
         Plato::create($request->all());
-        return redirect()->route('ListaPlatos');
+        return redirect()->route('ListaPlatos')->with('success','Plato Creado');
     }
 
     public function createP(){
@@ -36,10 +37,10 @@ class PlatoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateP(Request $request, Plato $platos)
+    public function updateP(PlatoRequest $request, Plato $platos)
     {
         $platos->update($request->all());
-        return redirect()->route('ListaPlatos');
+        return redirect()->route('ListaPlatos')->with('success','Plato Actualizado');;
     }
 
 
@@ -62,6 +63,6 @@ class PlatoController extends Controller
 
         }
         
-        return redirect()->route('ListaPlatos');
+        return redirect()->route('ListaPlatos')->with('success','Plato Eliminado');;
     }
 }

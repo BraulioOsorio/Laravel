@@ -4,7 +4,7 @@
 
 @section('conten')
 
-    <div class="background_content" style="background-color:black">
+    <div class="background_content">
         <h1>Cupones</h1>
     </div>
     <div class="text-content container"> 
@@ -27,6 +27,9 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('codigo_cupon')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                         </div>
             
                         <div class="col-lg-6 col-md-6 col-xs-6">
@@ -40,6 +43,9 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('porcentaje')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                         </div>
                         <div>
                             <button type="submit" class="text-center form-btn form-btn">Guardar</button> 

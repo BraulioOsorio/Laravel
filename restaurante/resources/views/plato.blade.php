@@ -6,7 +6,7 @@
 
   @section('conten')
 
-    <div class="background_content" style="background-color:black">
+    <div class="background_content">
         <h1>Platos</h1>
     </div>
     <div class="text-content container"> 
@@ -31,6 +31,9 @@
                                 @endif
                                 
                             @endcomponent
+                            @error('nombre')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                             
                             <select class="form mb-5" aria-label="Default select example" name="categoria_id">
 
@@ -65,6 +68,9 @@
                                 @endif
                                 
                             @endcomponent
+                            @error('costo')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                             @component('_components.inpout')
                                 @slot('type','number')
                                 @slot('name','precio')
@@ -75,6 +81,9 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('precio')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                             
                         </div>
                         <div>

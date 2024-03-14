@@ -4,7 +4,7 @@
 
 @section('conten')
 
-    <div class="background_content" style="background-color:black">
+    <div class="background_content">
         <h1>Pedidos</h1>
     </div>
     <div class="text-content container"> 
@@ -28,6 +28,9 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('nombre')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                             @component('_components.inpout')
                                 @slot('type','number')
                                 @slot('name','telefono')
@@ -38,6 +41,10 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('telefono')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
+
                             @component('_components.inpout')
                                 @slot('type','text')
                                 @slot('name','direccion')
@@ -48,6 +55,9 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('direccion')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                            
                             @if(isset($pedidos))
                                 <input type="text" name="cupon_id" class="form" placeholder="Cupon" value="{{$pedidos->cupon_id}}"/>
@@ -71,6 +81,10 @@
                             @else
                                 <textarea name="descripcion" class="form textarea"  placeholder="Descripción"></textarea>
                             @endif
+                            @error('descripcion')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
+
                             @component('_components.inpout')
                                 @slot('type','time')
                                 @slot('name','hora')
@@ -81,6 +95,9 @@
                                     @slot('valor', '')
                                 @endif
                             @endcomponent
+                            @error('hora')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                             <select name="tipo_pedido" class="form" aria-label="Default select example">
                                 <option value="ENSITIO">ENSITIO</option>
                                 <option value="DOMICILIO">DOMICILIO</option>

@@ -16,14 +16,27 @@
         
     </head>
 
-    <body style="background-color:black ">
+    <body>
+
+        
         @include('layouts.partials.menu')
+        @if(session('success'))
+            <div class="navbar-header">
+                <a class="navbar-brand">{{session('success')}}</a>
+            </div>
+        @endif
+
+        @if(session('danger'))
+
+            <div class="navbar-header">
+                <a class="navbar-brand">{{session('danger')}}</a>
+            </div>
+        @endif
         @yield('conten')
 
 
 
-
-
+        
         <script type="text/javascript" src="{{asset('assets/js/jquery-1.10.2.js')}}"></script>     
         <script type="text/javascript" src="{{asset('assets/js/main.js')}}" ></script>
 

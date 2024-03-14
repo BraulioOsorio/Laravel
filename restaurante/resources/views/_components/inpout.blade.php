@@ -1,2 +1,2 @@
 
-<input type={{$type}} name={{$name}} required="required" class="form" placeholder={{$place}} value="{{$valor}}" />
+<input type={{$type}} name={{$name}}  class="form" placeholder={{$place}} value="{{$valor}}" />

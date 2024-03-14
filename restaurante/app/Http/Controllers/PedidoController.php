@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Domicilio;
 use App\Models\Plato;
+use App\Http\Requests\PedidoRequest;
 
 
 class PedidoController extends Controller
@@ -23,10 +24,10 @@ class PedidoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function storeD(Request $request)
+    public function storeD(PedidoRequest $request)
     {
         Domicilio::create($request->all());
-        return redirect()->route('ListaPedidos');
+        return redirect()->route('ListaPedidos')->with('success','Pedido Creado');
     }
 
     public function createD(){
@@ -39,10 +40,10 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateD(Request $request, Domicilio $pedidos)
+    public function updateD(PedidoRequest $request, Domicilio $pedidos)
     {
         $pedidos->update($request->all());
-        return redirect()->route('ListaPedidos');
+        return redirect()->route('ListaPedidos')->with('success','Pedido Actualizado');
     }
 
 
@@ -65,6 +66,6 @@ class PedidoController extends Controller
 
         }
         
-        return redirect()->route('ListaPedidos');
+        return redirect()->route('ListaPedidos')->with('danger','Pedido Eliminada');
     }
 }

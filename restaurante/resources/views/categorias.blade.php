@@ -4,7 +4,7 @@
 
 @section('conten')
 
-    <div class="background_content" style="background-color:black">
+    <div class="background_content">
         <h1>Categorias</h1>
     </div>
     <div class="text-content container"> 
@@ -26,7 +26,11 @@
                                 @else
                                     @slot('valor', '')
                                 @endif
+                               
                             @endcomponent
+                            @error('nombre')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                         </div>
             
                         <div class="col-lg-6 col-md-6 col-xs-6">
@@ -39,7 +43,11 @@
                                 @else
                                     @slot('valor', '')
                                 @endif
+                                
                             @endcomponent
+                            @error('descripcion')
+                                <p style="color:red">{{$message}}</p>
+                            @enderror
                         </div>
                         <div>
                             <button type="submit" class="text-center form-btn form-btn">Guardar</button> 

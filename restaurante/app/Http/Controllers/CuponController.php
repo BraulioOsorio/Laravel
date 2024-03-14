@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cupon;
+use App\Http\Requests\CuponRequest;
 
 class CuponController extends Controller
 {
@@ -20,10 +21,10 @@ class CuponController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function storeC(Request $request)
+    public function storeC(CuponRequest $request)
     {
         Cupon::create($request->all());
-        return redirect()->route('ListaCupones');
+        return redirect()->route('ListaCupones')->with('success','Cupon Creado');
     }
 
     public function createC(){
@@ -34,10 +35,10 @@ class CuponController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateC(Request $request, Cupon $cupon)
+    public function updateC(CuponRequest $request, Cupon $cupon)
     {
         $cupon->update($request->all());
-        return redirect()->route('ListaCupones');
+        return redirect()->route('ListaCupones')->with('success','Cupon Actualizado');
     }
 
 
@@ -59,6 +60,6 @@ class CuponController extends Controller
 
         }
         
-        return redirect()->route('ListaCupones');
+        return redirect()->route('ListaCupones')->with('danger','Cupon Eliminada');
     }
 }

@@ -7,7 +7,7 @@
         <button type="submit" class="text-center form-btn form-btn"><a href="{{route('createC')}}">Crear</a></button> 
     </div>
 
-    <div class="background_content" style="background-color:black">
+    <div class="background_content">
         <h1>Lista Cupones</h1>
     </div>
     <div class="text-content container"> 
@@ -55,5 +55,7 @@
         </div>
 
     </div>
+
+    
 
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Http\Requests\UsuarioRequest;
 
 class Usuariocontroller extends Controller
 {
@@ -25,10 +26,10 @@ class Usuariocontroller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function storeU(Request $request)
+    public function storeU(UsuarioRequest $request)
     {
         Usuario::create($request->all());
-        return redirect()->route('ListaUsuarios');
+        return redirect()->route('ListaUsuarios')->with('success','Usuario Creado');
     }
 
     /**
@@ -42,10 +43,10 @@ class Usuariocontroller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateU(Request $request, Usuario $usuarios)
+    public function updateU(UsuarioRequest $request, Usuario $usuarios)
     {
         $usuarios->update($request->all());
-        return redirect()->route('ListaUsuarios');
+        return redirect()->route('ListaUsuarios')->with('success','Usuario Actualizado');
     }
 
     public function editU(Usuario $usuarios){
@@ -67,6 +68,6 @@ class Usuariocontroller extends Controller
 
         }
         
-        return redirect()->route('ListaUsuarios');
+        return redirect()->route('ListaUsuarios')->with('success','Usuario Eliminado');
     }
 }
