@@ -60,13 +60,21 @@
                             @enderror
                            
                             @if(isset($pedidos))
-                                <input type="text" name="cupon_id" class="form" placeholder="Cupon" value="{{$pedidos->cupon_id}}"/>
+                                <input type="text" name="cupon_id" class="form" placeholder="Cupon" value="{{$pedidos->cupon->codigo_cupon}}"/>
                             @else
                                 <input type="text" name="cupon_id" class="form" placeholder="Cupon" />
                             @endif
                             <select class="form " aria-label="Default select example" name="plato_id">
                                 @forelse($platos as $platos)
-                                    <option value={{$platos->id}}>{{$platos->nombre}}</option>
+                                    @if(isset($pedidos))
+                                        @if($pedidos->plato_id == $platos->id)
+                                            <option selected value={{$platos->id}}>{{$platos->nombre}}</option>
+                                        @else
+                                            <option value={{$platos->id}}>{{$platos->nombre}}</option>
+                                        @endif
+                                    @else
+                                        <option value={{$platos->id}}>{{$platos->nombre}}</option>
+                                    @endif
                                 @empty
                                     
                                     <option value="0">No Hay Platos</option>
@@ -99,8 +107,20 @@
                                 <p style="color:red">{{$message}}</p>
                             @enderror
                             <select name="tipo_pedido" class="form" aria-label="Default select example">
-                                <option value="ENSITIO">ENSITIO</option>
-                                <option value="DOMICILIO">DOMICILIO</option>
+                                @if(isset($pedidos))
+                                    @if($pedidos->tipo_pedido == "ENSITIO")
+                                        <option selected value="ENSITIO">ENSITIO</option>
+                                        <option value="DOMICILIO">DOMICILIO</option>
+                                    @else
+                                        <option selected value="DOMICILIO">DOMICILIO</option>
+                                        <option value="ENSITIO">ENSITIO</option>
+                                    @endif
+
+                                @else
+                                    <option value="ENSITIO">ENSITIO</option>
+                                    <option value="DOMICILIO">DOMICILIO</option>
+                                @endif
+                                
                             </select>
                         </div>
                         <div>

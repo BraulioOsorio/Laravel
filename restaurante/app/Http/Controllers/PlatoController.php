@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\Plato;
 use App\Models\Categoria;
@@ -24,8 +25,15 @@ class PlatoController extends Controller
      */
     public function storeP(PlatoRequest $request)
     {
-        Plato::create($request->all());
-        return redirect()->route('ListaPlatos')->with('success','Plato Creado');
+
+        try {
+            
+            Plato::create($request->all());
+            return redirect()->route('ListaPlatos')->with('success','Plato Creado');
+        } catch (QueryException $ex) {
+            
+            return redirect()->route('createP')->with('danger','Plato no Creado');
+        }
     }
 
     public function createP(){
@@ -39,8 +47,15 @@ class PlatoController extends Controller
      */
     public function updateP(PlatoRequest $request, Plato $platos)
     {
-        $platos->update($request->all());
-        return redirect()->route('ListaPlatos')->with('success','Plato Actualizado');;
+
+        try {
+            
+            $platos->update($request->all());
+            return redirect()->route('ListaPlatos')->with('success','Plato Actualizado');;
+        } catch (QueryException $ex) {
+            return redirect()->route('ListaPlatos')->with('danger','Plato no Actualizado');;
+
+        }
     }
 
 

@@ -20,19 +20,23 @@
 
         
         @include('layouts.partials.menu')
-        @if(session('success'))
+       
+        @yield('conten')
+        
+        <footer>
+            @if(session('success'))
             <div class="navbar-header">
                 <a class="navbar-brand">{{session('success')}}</a>
             </div>
-        @endif
+            @endif
 
-        @if(session('danger'))
+            @if(session('danger'))
 
-            <div class="navbar-header">
-                <a class="navbar-brand">{{session('danger')}}</a>
-            </div>
-        @endif
-        @yield('conten')
+                <div class="navbar-header">
+                    <a class="navbar-brand">{{session('danger')}}</a>
+                </div>
+            @endif
+        </footer>
 
 
 

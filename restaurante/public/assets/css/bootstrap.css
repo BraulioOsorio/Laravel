@@ -5,7 +5,14 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
-
+footer {
+  background-color: #201c1c; /* Color de fondo del footer */
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  height: 60px; /* Altura del footer */
+}
 article,
 aside,
 details,

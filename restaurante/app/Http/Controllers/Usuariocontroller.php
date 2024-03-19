@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Http\Requests\UsuarioRequest;
+use Illuminate\Database\QueryException;
+
 
 class Usuariocontroller extends Controller
 {
@@ -28,8 +30,15 @@ class Usuariocontroller extends Controller
      */
     public function storeU(UsuarioRequest $request)
     {
-        Usuario::create($request->all());
-        return redirect()->route('ListaUsuarios')->with('success','Usuario Creado');
+
+        try {
+            
+            Usuario::create($request->all());
+            return redirect()->route('ListaUsuarios')->with('success','Usuario Creado');
+        } catch (QueryException $ex) {
+            return redirect()->route('createU')->with('danger','Usuario no Creado');
+            
+        }
     }
 
     /**
@@ -45,8 +54,14 @@ class Usuariocontroller extends Controller
      */
     public function updateU(UsuarioRequest $request, Usuario $usuarios)
     {
-        $usuarios->update($request->all());
-        return redirect()->route('ListaUsuarios')->with('success','Usuario Actualizado');
+        try {
+            
+            $usuarios->update($request->all());
+            return redirect()->route('ListaUsuarios')->with('success','Usuario Actualizado');
+        } catch (QueryException $ex) {
+            return redirect()->route('ListaUsuarios')->with('danger','Usuario no Actualizado');
+            
+        }
     }
 
     public function editU(Usuario $usuarios){

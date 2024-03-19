@@ -23,7 +23,7 @@ class CuponRequest extends FormRequest
     {
         return [
             'codigo_cupon' => 'required|max:6|min:4|',
-            'porcentaje' => 'required|max:2|min:1|numeric',
+            'porcentaje' => 'required|regex:/^\d{0,2}(\.\d{1,4})?$/',
         ];
     }
 
@@ -31,6 +31,7 @@ class CuponRequest extends FormRequest
         return[
             'codigo_cupon.required' => 'Obligado',
             'codigo_cupon.max' => 'Debe ingresar maximo 6 letras',
+            'porcentaje.max' => 'Maximo ya',
             'porcentaje.required' => 'Maximo perimitido es de 99%',
 
         ];

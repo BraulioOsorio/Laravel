@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Domicilio;
 use App\Models\Plato;
 use App\Http\Requests\PedidoRequest;
+use App\Models\Cupon;
+use Illuminate\Database\QueryException;
 
 
 class PedidoController extends Controller
@@ -26,11 +28,36 @@ class PedidoController extends Controller
      */
     public function storeD(PedidoRequest $request)
     {
-        Domicilio::create($request->all());
-        return redirect()->route('ListaPedidos')->with('success','Pedido Creado');
+
+        try {
+            $cupon = Cupon::where('codigo_cupon',$request->cupon_id)->first();
+    
+            if(!$cupon){
+                return redirect()->route('createD')->with('danger','Cupon No Existe');
+                
+            }else{
+                
+                $cuponId = $cupon ? $cupon->id : null;
+                $plato = Plato::find($request->plato_id);
+                $precioPlato = $plato->precio;
+                $descuentoCupon = $cupon->porcentaje / 100;
+                $precioFinal = $precioPlato - ($precioPlato * $descuentoCupon);
+                
+                Domicilio::create(array_merge($request->all(), ['cupon_id' => $cuponId],['precio' => $precioFinal]));
+                return redirect()->route('ListaPedidos')->with('success','Pedido Creado');
+            }
+            
+        } catch (QueryException $ex) {
+            return redirect()->route('createD')->with('danger','Cupon error');
+
+        }
+
+        
     }
 
     public function createD(){
+
+        
         $platos = Plato::where('status','1')->get();
 
         return view('pedido',compact('platos'));
@@ -42,9 +69,34 @@ class PedidoController extends Controller
      */
     public function updateD(PedidoRequest $request, Domicilio $pedidos)
     {
-        $pedidos->update($request->all());
-        return redirect()->route('ListaPedidos')->with('success','Pedido Actualizado');
+
+        try {
+            $cupon = Cupon::where('codigo_cupon',$request->cupon_id)->first();
+    
+            
+    
+            if(!$cupon){
+                return redirect()->route('createD')->with('danger','Cupon No Existe');
+                
+            }else{
+                
+                $cuponId = $cupon ? $cupon->id : null;
+                $plato = Plato::find($request->plato_id);
+                $precioPlato = $plato->precio;
+                $descuentoCupon = $cupon->porcentaje / 100;
+                $precioFinal = $precioPlato - ($precioPlato * $descuentoCupon);
+                
+                $pedidos->update(array_merge($request->all(), ['cupon_id' => $cuponId],['precio' => $precioFinal]));
+                return redirect()->route('ListaPedidos')->with('success','Pedido Actualizado');
+            }
+            
+        } catch (QueryException $ex) {
+            return redirect()->route('ListaPedidos')->with('danger','Cupon error');
+
+        }
+        
     }
+
 
 
     public function editD(Domicilio $pedidos){

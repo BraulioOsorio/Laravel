@@ -22,8 +22,8 @@ class PlatoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'costo' => 'required|max:255|min:4|numeric',
-            'precio' => 'required|max:25|min:4|numeric',
+            'costo' => 'required|numeric',
+            'precio' => 'required|numeric',
             'nombre' => 'required|max:255|min:4',
         ];
     }

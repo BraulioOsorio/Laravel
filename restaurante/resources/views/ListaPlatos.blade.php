@@ -18,6 +18,7 @@
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Precio</th>
                     <th class="text-center">Costo</th>
+                    <th class="text-center">Categoria</th>
                     <th class="text-center">Editar</th>
                     <th class="text-center">Modificar Estado</th>
                   </tr>
@@ -29,6 +30,7 @@
                             <td>{{$platos->nombre}}</td>
                             <td>{{$platos->precio}}</td>
                             <td>{{$platos->costo}}</td>
+                            <td>{{$platos->categoria->nombre}}</td>
                             <td>
                                 <button type="submit" class="text-center btn btn-success"><a class="" href="{{route('editP',$platos->id)}}">Editar</a></button> 
                             </td>

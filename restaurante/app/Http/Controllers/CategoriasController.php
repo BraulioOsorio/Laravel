@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Http\Requests\CategoriaRequest;
+use Illuminate\Database\QueryException;
+
+
 
 class CategoriasController extends Controller
 {
@@ -27,8 +30,15 @@ class CategoriasController extends Controller
      */
     public function store(CategoriaRequest $request)
     {
-        Categoria::create($request->all());
-        return redirect()->route('ListaCategorias')->with('success','Categoria Creada');
+        try {
+            Categoria::create($request->all());
+            return redirect()->route('ListaCategorias')->with('success','Categoria Creada');
+        } catch (QueryException $ex) {
+            return redirect()->route('create')->with('danger','Categoria no creada');
+
+        }
+
+        
     }
 
     /**
@@ -36,8 +46,14 @@ class CategoriasController extends Controller
      */
     public function update(CategoriaRequest $request, Categoria $categorias)
     {
-        $categorias->update($request->all());
-        return redirect()->route('ListaCategorias')->with('success','Categoria Actualizada');
+
+        try {
+            $categorias->update($request->all());
+            return redirect()->route('ListaCategorias')->with('success','Categoria Actualizada');
+            
+        } catch (QueryException $ex) {
+            return redirect()->route('ListaCategorias')->with('danger','Categoria no Actualizada');   
+        }
     }
 
     public function edit(Categoria $categorias){
