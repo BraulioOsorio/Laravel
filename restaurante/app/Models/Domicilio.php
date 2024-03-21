@@ -28,8 +28,8 @@ class Domicilio extends Model
         return $this->belongsTo(Cupon::class);
     }
 
-    public function plato() :BelongsTo{
-        return $this->belongsTo(Plato::class);
+    public function platopedido() : HasMany {
+        return $this->hasMany(PlatoPedido::class);
     }
 }
 

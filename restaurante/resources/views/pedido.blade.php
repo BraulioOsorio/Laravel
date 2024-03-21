@@ -59,27 +59,11 @@
                                 <p style="color:red">{{$message}}</p>
                             @enderror
                            
-                            @if(isset($pedidos))
-                                <input type="text" name="cupon_id" class="form" placeholder="Cupon" value="{{$pedidos->cupon->codigo_cupon}}"/>
-                            @else
+                            @if(!isset($pedidos))
                                 <input type="text" name="cupon_id" class="form" placeholder="Cupon" />
                             @endif
-                            <select class="form " aria-label="Default select example" name="plato_id">
-                                @forelse($platos as $platos)
-                                    @if(isset($pedidos))
-                                        @if($pedidos->plato_id == $platos->id)
-                                            <option selected value={{$platos->id}}>{{$platos->nombre}}</option>
-                                        @else
-                                            <option value={{$platos->id}}>{{$platos->nombre}}</option>
-                                        @endif
-                                    @else
-                                        <option value={{$platos->id}}>{{$platos->nombre}}</option>
-                                    @endif
-                                @empty
-                                    
-                                    <option value="0">No Hay Platos</option>
-                                @endforelse
-                            </select>
+                            
+                            
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-xs-6">
@@ -122,10 +106,34 @@
                                 @endif
                                 
                             </select>
+                            
                         </div>
-                        <div>
-                            <button type="submit" id="submit" name="submit" class="text-center form-btn form-btn">Guardar</button> 
+                        
+                    </div>
+                    @if(!isset($pedidos))
+                        <div class="">
+                            <h3 class="text-center">Platos</h3>
+                            <div class="">
+                                <div class="row">
+                                    @foreach($platos as $plato)
+                                    <div class="col-lg-3 col-md-3 col-xs-3">
+                                        <div class="form-check form">
+                                            <input class="form-check-input" type="checkbox" value="{{ $plato->id }}" id="plato{{ $plato->id }}" name="platos[]">
+                                            <label class="form-check-label" for="plato{{ $plato->id }}">
+                                                {{ $plato->nombre }}
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                @endforeach
+                                </div>
+                                
+                            </div>
                         </div>
+                    @endif
+                    
+                    <div>
+                        <button type="submit" id="submit" name="submit" class="text-center form-btn form-btn">Guardar</button> 
                     </div>
                 </div>
                 

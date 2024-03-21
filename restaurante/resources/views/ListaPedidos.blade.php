@@ -22,8 +22,7 @@
                     <th class="text-center">Descripcion</th>
                     <th class="text-center">hora</th>
                     <th class="text-center">Cupon</th>
-                    <th class="text-center">Plato</th>
-                    <th class="text-center">Editar</th>
+                    <th class="text-center">Ver</th>
                     <th class="text-center">Modificar Estado</th>
                   </tr>
                 </thead>
@@ -38,7 +37,6 @@
                             <td>{{$pedidos->descripcion}}</td>
                             <td>{{$pedidos->hora}}</td>
                             <td>{{$pedidos->cupon->codigo_cupon}}</td>
-                            <td>{{$pedidos->plato->nombre}}</td>
                             <td>
                                 <button type="submit" class="text-center btn btn-success"><a class="" href="{{route('editD',$pedidos->id)}}">Editar</a></button> 
                             </td>
