@@ -59,7 +59,9 @@
                                 <p style="color:red">{{$message}}</p>
                             @enderror
                            
-                            @if(!isset($pedidos))
+                            @if(isset($pedidos))
+                                <input type="hidden" name="cupon_id" class="form" placeholder="Cupon" value="{{$pedidos->cupon->codigo_cupon}}"/>
+                            @else
                                 <input type="text" name="cupon_id" class="form" placeholder="Cupon" />
                             @endif
                             
@@ -122,12 +124,14 @@
                                             <label class="form-check-label" for="plato{{ $plato->id }}">
                                                 {{ $plato->nombre }}
                                             </label>
+                                            <label class="form-check-label" for="plato{{ $plato->id }}">
+                                                {{ $plato->precio }}
+                                            </label>
                                         </div>
 
                                     </div>
                                 @endforeach
                                 </div>
-                                
                             </div>
                         </div>
                     @endif

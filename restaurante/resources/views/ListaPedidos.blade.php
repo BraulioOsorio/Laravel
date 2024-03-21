@@ -23,6 +23,7 @@
                     <th class="text-center">hora</th>
                     <th class="text-center">Cupon</th>
                     <th class="text-center">Ver</th>
+                    <th class="text-center">Editar</th>
                     <th class="text-center">Modificar Estado</th>
                   </tr>
                 </thead>
@@ -36,7 +37,17 @@
                             <td>{{$pedidos->tipo_pedido}}</td>
                             <td>{{$pedidos->descripcion}}</td>
                             <td>{{$pedidos->hora}}</td>
-                            <td>{{$pedidos->cupon->codigo_cupon}}</td>
+                            @if ($pedidos->cupon)
+                                <td>{{$pedidos->cupon->codigo_cupon}}</td>
+                            @else
+                                <td>nop</td>
+                            @endif
+
+
+                            <td>
+                                <button type="submit" class="text-center btn btn-ligth"><a class="" href="{{route('ListaPedidoPlatos',$pedidos->id)}}">Platos</a></button> 
+                            </td>
+                            
                             <td>
                                 <button type="submit" class="text-center btn btn-success"><a class="" href="{{route('editD',$pedidos->id)}}">Editar</a></button> 
                             </td>

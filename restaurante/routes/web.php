@@ -63,4 +63,4 @@ Route::post('/storeD',[PedidoController::class,'storeD'])->name('storeD');
 Route::delete('/destroyD/{pedidos}',[PedidoController::class,'destroyD'])->name('destroyD');
 Route::put('/updateD/{pedidos}',[PedidoController::class,'updateD'])->name('updateD');
 Route::get('/editD/{pedidos}',[PedidoController::class,'editD'])->name('editD');
-
+Route::get('/ListaPedidoPlatos/{pedidos}',[PedidoController::class,'ListaPedidoPlatos'])->name('ListaPedidoPlatos');

@@ -20,7 +20,7 @@ class PlatoSeeder extends Seeder
         
         $categoria->each(function($cate){
             $plato = Plato::factory()->create([
-                'categoria_id' => $categoria->pluck('id')->random(),
+                'categoria_id' => $cate->pluck('id')->random(),
             ]);
         });
 

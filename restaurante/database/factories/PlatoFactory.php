@@ -19,8 +19,8 @@ class PlatoFactory extends Factory
         return [
             
             'nombre' => fake()->word(),
-            'precio' => fake()->numberBetween(1,2000),
-            'costo' => fake()->numberBetween(1,2000),
+            'precio' => fake()->numberBetween(1,20000),
+            'costo' => fake()->numberBetween(1,20000),
         ];
     }
 }

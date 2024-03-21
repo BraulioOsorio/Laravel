@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class Domicilio extends Model
@@ -29,7 +30,7 @@ class Domicilio extends Model
     }
 
     public function platopedido() : HasMany {
-        return $this->hasMany(PlatoPedido::class);
+        return $this->hasMany(PedidoPlato::class);
     }
 }
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->float('precio',10,2) -> default("0");
             $table->enum('tipo_pedido', ['ENSITIO', 'DOMICILIO'])->default('ENSITIO');
-            $table->unsignedBigInteger('cupon_id');
+            $table->unsignedBigInteger('cupon_id')->nullable();
             $table->text('descripcion');
             $table->time('hora');
             $table->tinyInteger('status')->default(1);

@@ -27,7 +27,6 @@ class PedidoRequest extends FormRequest
             'telefono' => 'required|min:8|numeric',
             'direccion' => 'required|max:255|min:10',
             'hora' => 'required',
-            'cupon_id' => 'required',
         ];
     }
 
@@ -37,7 +36,6 @@ class PedidoRequest extends FormRequest
             'telefono.max' => 'Debe ingresar mas de 999',
             'direccion.required' => 'Tamaño imnapropiado',
             'hora.required' => 'Ponga una hora',
-            'cupon_id.required' => 'Tamaño imnapropiado',
             'descripcion.required' => 'Obligatorio',
         ];
         

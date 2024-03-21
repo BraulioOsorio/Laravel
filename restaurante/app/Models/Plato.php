@@ -28,6 +28,6 @@ class Plato extends Model
         return $this->hasMany(Domicilio::class);
     }
     public function platopedido() : HasMany {
-        return $this->hasMany(PlatoPedido::class);
+        return $this->hasMany(PedidoPlato::class);
     }
 }

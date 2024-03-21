@@ -16,25 +16,23 @@
         
     </head>
 
-    <body>
+    <body> 
 
         
         @include('layouts.partials.menu')
-       
+
         @yield('conten')
+
+       
         
-        <footer>
+        <footer class="mt-5">
             @if(session('success'))
-            <div class="navbar-header">
                 <a class="navbar-brand">{{session('success')}}</a>
-            </div>
+
             @endif
 
             @if(session('danger'))
-
-                <div class="navbar-header">
                     <a class="navbar-brand">{{session('danger')}}</a>
-                </div>
             @endif
         </footer>
 
