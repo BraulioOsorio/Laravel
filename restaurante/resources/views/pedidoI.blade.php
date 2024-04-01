@@ -68,7 +68,9 @@
                             @endif
 
                             <input type="hidden" name="validar" value="1" class="form" />
-                            <a class="navbar-brand">Total a pagar: {{$pedidos->precio}}</a>
+                            @if(isset($pedidos))
+                                <a class="navbar-brand">Total a pagar: {{$pedidos->precio}}</a>
+                            @endif
                             
                             
                         </div>
