@@ -64,3 +64,7 @@ Route::delete('/destroyD/{pedidos}',[PedidoController::class,'destroyD'])->name(
 Route::put('/updateD/{pedidos}',[PedidoController::class,'updateD'])->name('updateD');
 Route::get('/editD/{pedidos}',[PedidoController::class,'editD'])->name('editD');
 Route::get('/ListaPedidoPlatos/{pedidos}',[PedidoController::class,'ListaPedidoPlatos'])->name('ListaPedidoPlatos');
+
+
+Route::get('/createDI',[PedidoController::class,'createDI'])->name('createDI');
+Route::get('/editDI/{pedidos}',[PedidoController::class,'editDI'])->name('editDI');

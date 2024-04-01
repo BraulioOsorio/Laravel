@@ -1,15 +1,19 @@
-@extends('layouts.landing')
+@extends('layouts.landingI')
 
 @section('title','Pedidos')
 
 @section('conten')
 
     <div class="background_content">
-        <h1>Pedidos</h1>
+        <h1>Pedidos I</h1>
+    </div>
+    <div class="text-center">
+        
     </div>
     <div class="text-content container"> 
         <div class="contact-form">
             <form id="contact-us" method="post" action="{{isset($pedidos) ? route('updateD',$pedidos->id) : route('storeD')}}">
+                
                 <div class="container">
                     <div class="row">
                         @csrf
@@ -62,6 +66,9 @@
                             @if(!isset($pedidos))
                                 <input type="text" name="cupon_id" class="form" placeholder="Cupon" />
                             @endif
+
+                            <input type="hidden" name="validar" value="1" class="form" />
+                            <a class="navbar-brand">Total a pagar: {{$pedidos->precio}}</a>
                             
                             
                         </div>
@@ -141,6 +148,19 @@
                 
                 <div class="clear"></div>
             </form>
+            @if(isset($pedidos))
+
+                <form method="POST" action="{{route('destroyD',$pedidos->id)}}" class="text-center">
+                    @csrf
+                    @method('DELETE')
+                    
+                    
+                    <input type="hidden" name="validar" value="1" class="form"/>
+                    <button type="submit" class="text-center btn btn-danger" style=" margin-left: 30px;margin-top: 10px; padding-left: 65px; padding-top:15px; padding-bottom:15px;padding-right:65px; " > Eliminar</button>  
+
+                    
+                </form>
+            @endif
         </div>
 
     </div>

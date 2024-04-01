@@ -34,6 +34,10 @@ class PedidoController extends Controller
                 $cupon = Cupon::where('codigo_cupon', $request->cupon_id)->first();
                 
                 if (!$cupon) {
+                    if(isset($request->validar)){
+                        return redirect()->route('createDI')->with('success', 'Cupón No Existe');
+        
+                    }
                     return redirect()->route('createD')->with('danger', 'Cupón No Existe');
                 }
                 
@@ -71,9 +75,18 @@ class PedidoController extends Controller
             }
             
             $domicilio->update(['precio' => $precioTotal]);
+
             
+            if(isset($request->validar)){
+                return redirect()->route('editDI', ['pedidos' => $domicilioId])->with('success', 'Pedido Creado');
+
+            }
             return redirect()->route('ListaPedidos')->with('success', 'Pedido Creado');
         } catch (QueryException $ex) {
+            if(isset($request->validar)){
+                return redirect()->route('createDI')->with('success', 'Error');
+
+            }
             return redirect()->route('createD')->with('danger', 'Error al crear el pedido');
         }
     }
@@ -88,6 +101,14 @@ class PedidoController extends Controller
         return view('pedido',compact('platos'));
         
     }
+    public function createDI(){
+        
+        
+        $platos = Plato::where('status','1')->get();
+        
+        return view('pedidoI',compact('platos'));
+        
+    }
     
     /**
      * Update the specified resource in storage.
@@ -96,22 +117,19 @@ class PedidoController extends Controller
     {
         
         try {
-            $cupon = Cupon::where('codigo_cupon',$request->cupon_id)->first();
-            
-            
-            
-            if(!$cupon){
-                return redirect()->route('createD')->with('danger','Cupon No Existe');
-                
-            }else{
-                
-                $cuponId = $cupon ? $cupon->id : null;
-                
-                $pedidos->update(array_merge($request->all(), ['cupon_id' => $cuponId]));
-                return redirect()->route('ListaPedidos')->with('success','Pedido Actualizado');
+  
+            $pedidos->update(array_merge($request->all()));
+            if(isset($request->validar)){
+                return redirect()->route('editDI', ['pedidos' => $pedidos])->with('success', 'Pedido Actualizado');
             }
+            return redirect()->route('ListaPedidos')->with('success','Pedido Actualizado');
+            
             
         } catch (QueryException $ex) {
+            if(isset($request->validar)){
+                return redirect()->route('createDI')->with('success', 'Error');
+
+            }
             return redirect()->route('ListaPedidos')->with('danger','Cupon error');
             
         }
@@ -123,6 +141,11 @@ class PedidoController extends Controller
     public function editD(Domicilio $pedidos){
         $platos = Plato::where('status','1')->get();
         return view('pedido',compact('pedidos','platos'));
+    }
+
+    public function editDI(Domicilio $pedidos){
+        $platos = Plato::where('status','1')->get();
+        return view('pedidoI',compact('pedidos','platos'));
     }
     
     /**
@@ -137,6 +160,10 @@ class PedidoController extends Controller
             $pedidosFind->status= ($pedidosFind->status==1)? 0 : 1;
             $pedidosFind->save();
             
+        }
+        if(isset($request->validar)){
+            return redirect()->route('createDI')->with('success', 'Pedido Eliminado');
+
         }
         
         return redirect()->route('ListaPedidos')->with('danger','Pedido Eliminada');
