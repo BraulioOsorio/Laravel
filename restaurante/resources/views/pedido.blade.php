@@ -120,10 +120,11 @@
                                         <div class="form-check form">
                                             <input class="form-check-input" type="checkbox" value="{{ $plato->id }}" id="plato{{ $plato->id }}" name="platos[]">
                                             <label class="form-check-label" for="plato{{ $plato->id }}">
-                                                {{ $plato->nombre }}
+                                                Plato: {{ $plato->nombre }}
                                             </label>
-                                            <label class="form-check-label" for="plato{{ $plato->id }}">
-                                                {{ $plato->precio }}
+                                            <br>
+                                            <label class="form-check-label" style="margin-left: 15px" for="plato{{ $plato->id }}">
+                                                Precio: {{ $plato->precio }}
                                             </label>
                                         </div>
 
